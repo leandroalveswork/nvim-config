@@ -39,7 +39,6 @@ vim.opt.wrap = false;
 vim.opt.swapfile = false;
 vim.opt.backup = false;
 
-local at_windows = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
 if at_windows then
   vim.opt.undodir = os.getenv('appdata') .. '/vim/undodir';
 else
