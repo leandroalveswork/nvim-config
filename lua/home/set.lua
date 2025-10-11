@@ -6,6 +6,15 @@ vim.g.edit_style = EditStyleEnum.Personal
 -- cursor em bloco ao inves do cursor fino enquanto digita
 vim.opt.guicursor = 'a:block';
 
+-- não transformar os caminhos de diretorio colocando '\' no final
+-- isso é necessário para o netcoredbg funcionar corretamente no Windows
+local at_windows = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+if at_windows then
+  vim.defer_fn(function()
+    vim.opt.shellslash = false
+  end, 2000)
+end
+
 -- mostrar numero das linhas ao lado
 vim.opt.number = true;
 -- mostrar linhas relativas a linha que o cursor está
