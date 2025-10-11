@@ -207,8 +207,6 @@ require("lazy").setup({
   --   1. Ir em releases e baixar a ultima versao
   --   2. Extrair o fonte e instalar com o comando:
   --      ./mvnw clean install -Djdk.xml.maxGeneralEntitySizeLimit=1000000 -Djdk.xml.totalEntitySizeLimit=1000000
-  --
-  -- Requer inicializar a aplicação com jvmArgs: 
   {
     "mfussenegger/nvim-jdtls",
     priority = -20,
