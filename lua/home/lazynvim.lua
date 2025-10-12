@@ -416,6 +416,39 @@ require("lazy").setup({
           port = 5005,
         }
       }
+
+      local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
+      for _, language in ipairs(js_filetypes) do
+        if not dap.configurations[language] then
+          dap.configurations[language] = {
+            {
+              type = "pwa-node",
+              request = "launch",
+              name = "Launch file",
+              program = "${file}",
+              cwd = "${workspaceFolder}",
+            },
+            {
+              type = "pwa-node",
+              request = "attach",
+              name = "Attach",
+              processId = require("dap.utils").pick_process,
+              cwd = "${workspaceFolder}",
+            },
+            -- mudar em about:config do firefox as flags para os seguintes valores:
+            -- devtools.chrome.enabled              true
+            -- devtools.debugger.remote-enabled     true
+            -- devtools.debugger.prompt-connection  false
+            {
+              type = "firefox",
+              request = "attach",
+              name = "Attach (firefox)",
+              url = "http://localhost:4200",
+              webRoot = "${workspaceFolder}",
+            }
+          }
+        end
+      end
     end,
     config = function()
       local dap = require"dap"
