@@ -33,13 +33,15 @@ end
 --- @param file string
 --- @return boolean
 function Filesystem.file_exists(file)
-  return vim.uv.fs_stat(file).type == "file"
+  local stat = vim.uv.fs_stat(file)
+  return (stat ~= nil) and stat.type == "file"
 end
 
 --- @param path string
 --- @return boolean
 function Filesystem.directory_exists(path)
-  return vim.uv.fs_stat(path).type == "directory"
+  local stat = vim.uv.fs_stat(path)
+  return (stat ~= nil) and stat.type == "directory"
 end
 
 function Filesystem.refresh_netrw()
